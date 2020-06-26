@@ -95,3 +95,7 @@ body {
 .scoreBoard span.active {
     border-bottom: 4px solid #F286A0;
 }
+
+.stats{
+	margin-top:50px;
+}
