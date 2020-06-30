@@ -10,6 +10,15 @@
 		<h1>
 			Statistics
 		</h1>
+		<table>
+			<tr><th>Player</th></tr>
+			<tr th:each="p: ${players}">
+			<td th:text="${p.name}"></td>
+		</tr>
+		</table>
+		<div class="back">
+			<input type="button" class="btn btn-lg btn-danger" onclick="javascript:history.back()" value="Go back"/>
+		</div>
 	</div>
 </body>
 </html>
