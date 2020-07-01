@@ -1,15 +1,32 @@
 package es.codeurjc.ais.tictactoe;
 
-public class Player {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Player {
+	
+	@Id
+	private int id;
 	private String label;
 	private String name;
-	private int id;
+	private int partidasGanadas;
+	private int partidasPerdidas;
+	private int partidasEmpatadas;
 
 	public Player(int id, String label, String name) {
 		this.id = id;
 		this.label = label;
 		this.name = name;
+	}
+	
+	public Player(int id, String label, String name, int gan, int per, int emp) {
+		this.id = id;
+		this.label = label;
+		this.name = name;
+		this.partidasGanadas = gan;
+		this.partidasPerdidas = per;
+		this.partidasEmpatadas = emp;
 	}
 
 	public String getLabel() {
@@ -22,6 +39,30 @@ public class Player {
 
 	public String getName() {
 		return name;
+	}
+
+	public int getPartidasGanadas() {
+		return partidasGanadas;
+	}
+
+	public void setPartidasGanadas(int partidasGanadas) {
+		this.partidasGanadas = partidasGanadas;
+	}
+
+	public int getPartidasPerdidas() {
+		return partidasPerdidas;
+	}
+
+	public void setPartidasPerdidas(int partidasPerdidas) {
+		this.partidasPerdidas = partidasPerdidas;
+	}
+
+	public int getPartidasEmpatadas() {
+		return partidasEmpatadas;
+	}
+
+	public void setPartidasEmpatadas(int partidasEmpatadas) {
+		this.partidasEmpatadas = partidasEmpatadas;
 	}
 	
 	
