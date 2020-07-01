@@ -13,6 +13,7 @@ public class Player {
 	private int partidasGanadas;
 	private int partidasPerdidas;
 	private int partidasEmpatadas;
+	private int puntos = 50;
 
 	public Player(int id, String label, String name) {
 		this.id = id;
@@ -65,5 +66,12 @@ public class Player {
 		this.partidasEmpatadas = partidasEmpatadas;
 	}
 	
+	public int getPuntos() {
+		return puntos;
+	}
+
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
+	}
 	
 }
