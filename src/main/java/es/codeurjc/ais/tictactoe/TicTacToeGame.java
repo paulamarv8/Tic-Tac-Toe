@@ -38,8 +38,10 @@ public class TicTacToeGame {
 	private List<Connection> connections = new CopyOnWriteArrayList<>();
 	private List<Player> players = new CopyOnWriteArrayList<>();
 	private Board board = new Board();
+	private static StatisticsService service = new StatisticsService();
 
 	private int currentTurn = 0;
+	private int otherTurn = 1;
 	private boolean ready = false;
 
 	public void disableAll() {
@@ -61,6 +63,7 @@ public class TicTacToeGame {
 		if (this.ready && cell.active) {
 
 			Player player = this.players.get(this.currentTurn);
+			Player opponent = this.players.get(this.otherTurn);
 
 			cell.value = player.getLabel();
 			cell.active = false;
@@ -75,6 +78,16 @@ public class TicTacToeGame {
 
 			if (res.win) {
 
+				int ganadas = player.getPartidasGanadas();
+				int perdidas = opponent.getPartidasPerdidas();
+				player.setPartidasGanadas(ganadas + 1);
+				opponent.setPartidasPerdidas(perdidas + 1);
+				
+				int puntosGanador = player.getPuntos();
+				int puntosPerdedor = opponent.getPuntos();
+				player.setPuntos(puntosGanador + 100);
+				opponent.setPuntos(puntosPerdedor - 50);
+				
 				this.disableAll();
 
 				WinnerValue winner = new WinnerValue();
@@ -82,10 +95,17 @@ public class TicTacToeGame {
 				winner.pos = res.pos;
 
 				this.sendEvent(EventType.GAME_OVER, winner);
+				restart();
 
 			} else if (this.checkDraw()) {
 
+				int empatadasPlayer = player.getPartidasEmpatadas();
+				int empatadasOpponent = opponent.getPartidasEmpatadas();
+				player.setPartidasEmpatadas(empatadasPlayer + 1);
+				opponent.setPartidasEmpatadas(empatadasOpponent + 1);
+				
 				this.sendEvent(EventType.GAME_OVER, null);
+				restart();
 
 			} else {
 
@@ -120,10 +140,12 @@ public class TicTacToeGame {
 
 	public boolean checkDraw() {
 
-		return board.checkDraw();
+		return board.checkFull();
 	}
 
 	public void addPlayer(Player player) {
+
+		service.addPlayerSer(player);
 
 		if (this.players.size() < 2) {
 
@@ -142,6 +164,10 @@ public class TicTacToeGame {
 		}
 	}
 
+	public static StatisticsService getService() {
+		return service;
+	}
+
 	public List<Player> getPlayers() {
 		return players;
 	}
@@ -153,8 +179,9 @@ public class TicTacToeGame {
 	public void restart() {
 
 		board = new Board();
+		board.enableAll();
 
-		sendEvent(EventType.RESTART, null);
+		sendEvent(EventType.RESTART, this.players);
 
 		changeTurn();
 	}
