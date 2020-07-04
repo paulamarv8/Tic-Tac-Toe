@@ -85,8 +85,10 @@ public class TicTacToeGame {
 				
 				int puntosGanador = player.getPuntos();
 				int puntosPerdedor = opponent.getPuntos();
-				player.setPuntos(puntosGanador + 100);
-				opponent.setPuntos(puntosPerdedor - 50);
+				int puntosApuestaGanador = player.getPuntosApostados();
+				int puntosApuestaPerdedor = opponent.getPuntosApostados();
+				player.setPuntos(puntosGanador + 100 + (puntosApuestaGanador * 2));
+				opponent.setPuntos(puntosPerdedor - 50 - puntosApuestaPerdedor);
 				
 				this.disableAll();
 
