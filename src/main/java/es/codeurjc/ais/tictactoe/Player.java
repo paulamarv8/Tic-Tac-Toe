@@ -14,11 +14,19 @@ public class Player {
 	private int partidasPerdidas;
 	private int partidasEmpatadas;
 	private int puntos = 50;
+	private int puntosApostados;
 
 	public Player(int id, String label, String name) {
 		this.id = id;
 		this.label = label;
 		this.name = name;
+	}
+
+	public Player(int id, String label, String name, int puntos) {
+		this.id = id;
+		this.label = label;
+		this.name = name;
+		this.puntosApostados = puntos;
 	}
 	
 	public Player(int id, String label, String name, int gan, int per, int emp) {
@@ -74,4 +82,11 @@ public class Player {
 		this.puntos = puntos;
 	}
 	
+	public int getPuntosApostados() {
+		return puntosApostados;
+	}
+
+	public void setPuntosApostados(int puntosApostados) {
+		this.puntosApostados = puntosApostados;
+	}
 }
