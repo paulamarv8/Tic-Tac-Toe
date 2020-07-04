@@ -9,11 +9,9 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
-
 	<div class="container">
-		<div class="stats">
-			<input type="button" class="btn btn-lg btn-danger" onclick="window.location.href='/stats'" value="Statistics"/>
+		<div class="esconder" id="stats">
+			 <input type="button" class="btn btn-lg btn-danger" onclick="window.location.href='/stats'" value="Statistics"/>
 		</div>
 		<div class="row">
 			<div class="col-sm-3 col-sm-offset-3 scoreBoard">
@@ -38,6 +36,14 @@
 								<button class="btn btn-lg btn-danger" id="startBtn">PLAY!</button>
 							</span>
 						</div>
+					</div>
+				</div>
+				<div class="betPoints" >
+					<input type="button" class="btn btn-lg btn-danger" onclick="abrir()" value="Bet points"/>
+					<div class="esconder" id="Bet" title="Bet points">
+						<h4 class="colorDark">How much points do you want to bet?</h4>
+						<input type=number id="points" min="1" max="50">
+						<input type="button" onclick="cerrar()" value="Cancel"/>
 					</div>
 				</div>
 			</div>
