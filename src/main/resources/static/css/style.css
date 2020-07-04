@@ -96,6 +96,14 @@ body {
     border-bottom: 4px solid #F286A0;
 }
 
-.stats{
+table{
+	border-spacing: 10px;
+	border-collapse: separate;
+	text-align:center;
+	font-size: 20px;
+}
+
+.esconder{
 	margin-top:50px;
+	display: none;
 }
