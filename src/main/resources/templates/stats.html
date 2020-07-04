@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/style.css">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<script src="/js/Board.js"></script>
+	<script src="/js/app.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -11,13 +13,17 @@
 			Statistics
 		</h1>
 		<table>
-			<tr><th>Player</th></tr>
+			<tr><th>Player</th><th>Games won</th><th>Games lost</th><th>Games tied</th><th>Points</th></tr>
 			<tr th:each="p: ${players}">
 			<td th:text="${p.name}"></td>
+			<td th:text="${p.partidasGanadas}"></td>
+			<td th:text="${p.partidasPerdidas}"></td>
+			<td th:text="${p.partidasEmpatadas}"></td>
+			<td id="points" th:text="${p.puntos}"></td>
 		</tr>
 		</table>
-		<div class="back">
-			<input type="button" class="btn btn-lg btn-danger" onclick="javascript:history.back()" value="Go back"/>
+		<div class="buttons">
+			<input type="button" class="btn btn-lg btn-danger" onclick="window.location.href='/'" value="Go back"/>
 		</div>
 	</div>
 </body>
