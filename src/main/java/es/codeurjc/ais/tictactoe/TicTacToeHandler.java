@@ -36,6 +36,7 @@ public class TicTacToeHandler extends TextWebSocketHandler {
 		int playerId;
 		int cellId;
 		String name;
+		int puntosApostados;
 	}
 
 	private ObjectMapper json = new ObjectMapper().setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
@@ -100,7 +101,7 @@ public class TicTacToeHandler extends TextWebSocketHandler {
 			case JOIN_GAME:
 				int numPlayers = game.getPlayers().size();
 				String letter = numPlayers == 0 ? "X" : "O";
-				Player player = new Player(numPlayers + 1, letter, msg.data.name);
+				Player player = new Player(numPlayers + 1, letter, msg.data.name, msg.data.puntosApostados);
 				game.addPlayer(player);
 				break;
 
