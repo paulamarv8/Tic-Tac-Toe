@@ -22,6 +22,9 @@ const events = {
 let container = document.querySelector('#gameBoard');
 let joinForm = document.querySelector('#joinForm');
 
+let stats = document.querySelector('#stats');
+let points = document.querySelector('#points');
+
 let startBtn = document.querySelector('#startBtn');
 let nameInput = document.querySelector('#nickname');
 
@@ -137,16 +140,22 @@ function start(){
 startBtn.addEventListener('click', event => {
     
 	var name = nameInput.value.trim();
+	var puntos = points.value;
 
     if (name.length > 0) {
         player.name = name;
-        sendMessage(events.outgoing.JOIN_GAME, { name: name });
+	if (puntos > 0 && puntos < 50){
+		player.puntosApostados = puntos;
+        	sendMessage(events.outgoing.JOIN_GAME, { name: name, puntosApostados: puntos });
+	}
     }
 });
 
 function startGame() {
 	
 	joinForm.style.display = "none";
+
+	stats.style.display = "block";
     
     if (board.players.length === 1) {
         scoreBoard[1].textContent = 'waiting...';
@@ -163,6 +172,14 @@ function sendMessage(action, data) {
     };
 
     socket.send( JSON.stringify(resp) );
+}
+
+function abrir(){
+	document.getElementById("Bet").style.display="block";
+}
+
+function cerrar(){
+	document.getElementById("Bet").style.display="none";
 }
 
 start();
