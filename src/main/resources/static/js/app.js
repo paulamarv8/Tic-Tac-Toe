@@ -142,13 +142,15 @@ startBtn.addEventListener('click', event => {
 	var name = nameInput.value.trim();
 	var puntos = points.value;
 
-    if (name.length > 0) {
+    if ((name.length > 0) && (puntos > 0 && puntos < 50)){
         player.name = name;
-	if (puntos > 0 && puntos < 50){
 		player.puntosApostados = puntos;
-        	sendMessage(events.outgoing.JOIN_GAME, { name: name, puntosApostados: puntos });
+        sendMessage(events.outgoing.JOIN_GAME, { name: name, puntosApostados: puntos });
+    } else if ((name.length > 0) && (puntos == 0) ){
+		player.name = name;
+		player.puntosApostados = 0;
+        sendMessage(events.outgoing.JOIN_GAME, { name: name, puntosApostados: puntos });
 	}
-    }
 });
 
 function startGame() {
