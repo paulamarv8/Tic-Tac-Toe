@@ -144,13 +144,13 @@ startBtn.addEventListener('click', event => {
 
     if ((name.length > 0) && (puntos > 0 && puntos < 50)){
         player.name = name;
-		player.puntosApostados = puntos;
+	player.puntosApostados = puntos;
         sendMessage(events.outgoing.JOIN_GAME, { name: name, puntosApostados: puntos });
     } else if ((name.length > 0) && (puntos == 0) ){
-		player.name = name;
-		player.puntosApostados = 0;
+	player.name = name;
+	player.puntosApostados = 0;
         sendMessage(events.outgoing.JOIN_GAME, { name: name, puntosApostados: puntos });
-	}
+    }
 });
 
 function startGame() {
@@ -176,12 +176,27 @@ function sendMessage(action, data) {
     socket.send( JSON.stringify(resp) );
 }
 
+function customize(){
+	document.getElementById("display2").style.display="block";
+}
+
 function abrir(){
-	document.getElementById("Bet").style.display="block";
+	document.getElementById("display").style.display="block";
 }
 
 function cerrar(){
-	document.getElementById("Bet").style.display="none";
+	document.getElementById("display").style.display="none";
+	document.getElementById("display2").style.display="none";
+}
+
+function cambiarFondo(color){
+	var c = color.value
+	document.getElementById("body").style.backgroundColor=c;
+}
+
+function cambiarBoard(color){
+	var c = color.value
+	document.getElementById("gameBoard").style.backgroundColor=c;
 }
 
 start();

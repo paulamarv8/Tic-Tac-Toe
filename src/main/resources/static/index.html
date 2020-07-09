@@ -8,11 +8,34 @@
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body id="body">
 	<div class="container">
 		<div class="esconder" id="stats">
 			 <input type="button" class="btn btn-lg btn-danger" onclick="window.location.href='/stats'" value="Statistics"/>
 			 <input type="button" class="btn btn-lg btn-danger" onclick=customize() value="Customize"/>
+			 <div class="esconder" id="display2">
+			 	<label for="background">Background</label>
+					 <select id="colors" onchange="cambiarFondo(this)">
+						<option value="">Select color</option>
+  						<option value="#da9eff">Purple</option>
+  						<option value="#99db91">Green</option>
+  						<option value="#fff6a8">Yellow</option>
+  						<option value="#8fe0ff">Blue</option>
+  						<option value="#ffc3f1">Pink</option>
+  						<option value="#A5DAD2">Original</option>
+					</select> 
+				<label for="board">Board</label>
+					 <select id="colors" onchange="cambiarBoard(this)">
+						<option value="">Select color</option>
+  						<option value="#da9eff">Purple</option>
+  						<option value="#99db91">Green</option>
+  						<option value="#fff6a8">Yellow</option>
+  						<option value="#8fe0ff">Blue</option>
+  						<option value="#ffc3f1">Pink</option>
+  						<option value="#A5DAD2">Original</option>
+				</select> 
+				<input type="button" onclick="cerrar()" value="Cancel"/>
+			 </div>
 		</div>
 		<div class="row">
 			<div class="col-sm-3 col-sm-offset-3 scoreBoard">
@@ -41,7 +64,7 @@
 				</div>
 				<div class="betPoints" >
 					<input type="button" class="btn btn-lg btn-danger" onclick="abrir()" value="Bet points"/>
-					<div class="esconder" id="Bet" title="Bet points">
+					<div class="esconder" id="display" title="Bet points">
 						<h4 class="colorDark">How much points do you want to bet?</h4>
 						<input type=number id="points" min="1" max="50">
 						<input type="button" onclick="cerrar()" value="Cancel"/>
@@ -51,10 +74,8 @@
 			<div class="col-sm-6 col-sm-offset-3" id="gameBoard"></div>
 		</div>
 	</div>
-
 	<script src="/js/Board.js"></script>
 	<script src="/js/app.js"></script>
-
 </body>
 </html>
 
